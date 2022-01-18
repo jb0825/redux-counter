@@ -1,4 +1,4 @@
-# Redux Training
+# Redux 연습
 
 [참고 링크](https://redux.vlpt.us/)
 
