@@ -4,12 +4,12 @@
 
 ## Presentational(Dumb) Components & Container(Smart) Components 구조
 
-###**Presentational component** :
+**Presentational component** :
 
 View 만을 담당하는 컴포넌트. Redux store 에 직접적인 접근 권한이 없으며
 대부분 state 를 가지고 있지 않다. 갖고있을 경우 UI 에 관련된 state 이다.
 
-###**Container Component** :
+**Container Component** :
 
 스타일을 가지고있지 않으며 state 를 가진다.
 Redux 에 직접적으로 접근할 수 있다.
