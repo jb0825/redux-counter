@@ -28,7 +28,11 @@ import { Provider } from "react-redux";
  */
 
 // Redux store 생성
-const store = createStore(reducers);
+// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() : Redux Chrome 앱 사용을 위한 설정
+const store = createStore(
+  reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 // Redux store 을 Provider 를 이용해 리액트 앱에 연동
 ReactDOM.render(

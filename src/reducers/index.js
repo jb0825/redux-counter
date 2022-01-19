@@ -1,53 +1,74 @@
-import { combineReducers } from "redux";
-import color from "./color";
-import number from "./number";
+import * as types from "../actions/ActionTypes";
 
-// 상태변화하기 전의 초기 상태
-/*
 const initialState = {
-  number: 0,
-  color: "black",
+  counters: [
+    {
+      number: 0,
+      color: "black",
+    },
+  ],
 };
-*/
 
-/*
- * reducer 함수 정의
- *
- * state 가 undefined 일때 (store 가 생성될때) state 의 기본값을 initialState 로 사용한다.
- * action.type 에 따라 새 상태를 만들어 반환한다.
- * reducer 는 state 를 직접 수정하면 안되고,
- * 기존 상태값에 원하는 값을 덮어쓴 새로운 객체를 반환해야 한다.
- */
-/*
-const counter = (state = initialState, action) => {
+// 리듀서 함수 정의
+export default function counter(state = initialState, action) {
+  // 레퍼런스 생성
+  const { counters } = state;
+  const index = action.index;
+
   switch (action.type) {
+    // 카운터 생성
+    case types.CREATE:
+      return {
+        counters: [
+          ...counters,
+          {
+            number: 0,
+            color: action.color,
+          },
+        ],
+      };
+    // slice 로 맨 마지막 카운터 제거
+    case types.REMOVE:
+      return {
+        counters: counters.slice(0, counters.length - 1),
+      };
+    // index 일치하는 카운터 값 증가
     case types.INCREMENT:
       return {
-        ...state,
-        number: state.number + 1,
+        counters: [
+          ...counters.slice(0, index),
+          {
+            ...counters[index],
+            number: counters[index].number + 1,
+          },
+          ...counters.slice(index + 1, counters.length),
+        ],
       };
+    // index 일치하는 카운터 값 감소
     case types.DECREMENT:
       return {
-        ...state,
-        number: state.number - 1,
+        counters: [
+          ...counters.slice(0, index),
+          {
+            ...counters[index],
+            number: counters[index].number - 1,
+          },
+          ...counters.slice(index + 1, counters.length),
+        ],
       };
+    // index 일치하는 카운터 색 변경
     case types.SET_COLOR:
       return {
-        ...state,
-        color: action.color,
+        counters: [
+          ...counters.slice(0, index),
+          {
+            ...counters[index],
+            color: action.color,
+          },
+          ...counters.slice(index + 1, counters.length),
+        ],
       };
     default:
       return state;
   }
-};
-*/
-
-//위의 reducer 과 initialState 를 color, number 서브 리듀서로 분할하였다.
-
-// 서브 리듀서 합치기
-const reducers = combineReducers({
-  numberData: number,
-  colorData: color,
-});
-
-export default reducers;
+}
