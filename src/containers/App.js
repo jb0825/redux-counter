@@ -24,5 +24,5 @@ const mapToDispatch = dispatch => ({
 });
 
 // 리덕스에 연결시키고 내보낸다
-// store 에서 필요한 값이 App 컴포넌트에는 없으니 null 로 설정
+// App 컴포넌트에서 store 값을 사용하지않으니 mapToState 를 null 로 설정
 export default connect(null, mapToDispatch)(App);
