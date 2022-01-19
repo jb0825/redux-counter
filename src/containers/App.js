@@ -17,7 +17,7 @@ const App = props => {
   );
 };
 
-// 액션함수 준비
+// 액션함수 준비하고 App 의 props 로 전달
 const mapToDispatch = dispatch => ({
   onCreate: () => dispatch(actions.create(getRandomColor())),
   onRemove: index => dispatch(actions.remove(index)),
