@@ -5,7 +5,9 @@ import getRandomColor from "../utils";
 
 // store 안의 state 값을 props 로 연결해주는 함수
 const mapStateToProps = state => ({
-  counters: state.counters,
+  // reducer 에서 immutable Map 형태로 state 코드를 수정했기 때문에
+  // 스토어에서 상태를 가져올 때도 Map.get('key') 형태로 가져온다.
+  counters: state.get("counters"),
 });
 
 // action 생성 및 해당 액션을 dispatch 하는 함수를 props 로 연결해줌
