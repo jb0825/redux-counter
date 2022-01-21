@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import * as actions from "../modules";
 import CounterList from "../components/CounterList";
 import getRandomColor from "../utils";
 
@@ -14,7 +14,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onIncrement: index => dispatch(actions.increment(index)),
   onDecrement: index => dispatch(actions.decrement(index)),
-  onSetColor: index => dispatch(actions.setColor(index, getRandomColor())),
+  onSetColor: index => {
+    const color = getRandomColor();
+    dispatch(actions.setColor({ index, color }));
+  },
 });
 
 // 데이터와 함수들이 props 로 붙은 컴포넌트 생성

@@ -1,12 +1,10 @@
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import * as actions from "../modules";
 import Buttons from "../components/Buttons";
 import getRandomColor from "../utils";
 import CounterListContainer from "./CounterListContainer";
 
 const App = props => {
-  console.log(props);
-
   const { onCreate, onRemove } = props;
 
   return (
